@@ -1,0 +1,18 @@
+<%= form_for @character do |f| %>
+  <%= f.label :name, "Enter name here:"%>
+  <%= f.text_field :name %>
+  <%= f.label :realm, "Enter realm here:"%>
+  <%= f.text_field :realm %>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<% @characters.each do |character| %>
+  <h2><%= character.name %></h2>
+  <p>Realm: <%= character.realm %></p>
+  <p>Battlegroup: <%= character.battlegroup %></p>
+  <p>Class: <%= character.character_class %></p>
+  <p>Race: <%= character.race %></p>
+  <p>Gender: <%= character.gender %></p>
+  <p>Level: <%= character.level %></p>
+  <p>Achievement Points: <%= character.achievementPoints %></p>
+<% end %>

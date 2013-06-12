@@ -22,8 +22,10 @@ group :assets do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'cucumber-rails'
   gem 'capybara'
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'
