@@ -1,3 +1,7 @@
+<% unless current_user %>
+  <%= link_to "Log In", new_user_session_path %>
+<% end %>
+
 <%= form_for @character do |f| %>
   <%= f.label :name, "Enter name here:"%>
   <%= f.text_field :name %>
