@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130611191823) do
 
   create_table "characters", :force => true do |t|
-    t.integer  "lastModified"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "realm"
     t.string   "battlegroup"

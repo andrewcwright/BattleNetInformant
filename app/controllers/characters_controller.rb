@@ -6,7 +6,7 @@ class CharactersController < ApplicationController
     @name = params[:character][:name]
     @realm = params[:character][:realm]
     character = format_character
-    @character = Character.create( character )
+    @character = current_user.characters.create( character )
     flash[:notice] = "Your Character has been added!"
     redirect_to :root
   end

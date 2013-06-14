@@ -1,7 +1,7 @@
 class CreateCharacters < ActiveRecord::Migration
   def change
     create_table :characters do |t|
-      t.integer :lastModified
+      t.integer :user_id
       t.string :name
       t.string :realm
       t.string :battlegroup

@@ -1,4 +1,6 @@
-<% unless current_user %>
+<% if current_user %>
+  <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+<% else %>
   <%= link_to "Log In", new_user_session_path %>
 <% end %>
 
@@ -10,13 +12,26 @@
   <%= f.submit "Submit" %>
 <% end %>
 
-<% @characters.each do |character| %>
-  <h2><%= character.name %></h2>
-  <p>Realm: <%= character.realm %></p>
-  <p>Battlegroup: <%= character.battlegroup %></p>
-  <p>Class: <%= character.character_class %></p>
-  <p>Race: <%= character.race %></p>
-  <p>Gender: <%= character.gender %></p>
-  <p>Level: <%= character.level %></p>
-  <p>Achievement Points: <%= character.achievementPoints %></p>
+<% if current_user %>
+  <% current_user.characters.each do |character| %>
+    <h2><%= character.name %></h2>
+    <p>Realm: <%= character.realm %></p>
+    <p>Battlegroup: <%= character.battlegroup %></p>
+    <p>Class: <%= character.character_class %></p>
+    <p>Race: <%= character.race %></p>
+    <p>Gender: <%= character.gender %></p>
+    <p>Level: <%= character.level %></p>
+    <p>Achievement Points: <%= character.achievementPoints %></p>
+  <% end %>
+<% else %>
+  <% @characters.each do |character| %>
+    <h2><%= character.name %></h2>
+    <p>Realm: <%= character.realm %></p>
+    <p>Battlegroup: <%= character.battlegroup %></p>
+    <p>Class: <%= character.character_class %></p>
+    <p>Race: <%= character.race %></p>
+    <p>Gender: <%= character.gender %></p>
+    <p>Level: <%= character.level %></p>
+    <p>Achievement Points: <%= character.achievementPoints %></p>
+  <% end %>
 <% end %>
