@@ -23,8 +23,21 @@ ActiveRecord::Schema.define(:version => 20130611191823) do
     t.string   "gender"
     t.integer  "level"
     t.integer  "achievementPoints"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "health"
+    t.string   "powerType"
+    t.integer  "power"
+    t.integer  "strength"
+    t.integer  "agility"
+    t.integer  "stamina"
+    t.integer  "intellect"
+    t.integer  "spirit"
+    t.decimal  "mastery",           :precision => 4, :scale => 2
+    t.decimal  "pvpResilience",     :precision => 4, :scale => 2
+    t.decimal  "pvpPower",          :precision => 4, :scale => 2
+    t.decimal  "pvpPowerDamage",    :precision => 4, :scale => 2
+    t.decimal  "pvpPowerHealing",   :precision => 4, :scale => 2
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "users", :force => true do |t|
