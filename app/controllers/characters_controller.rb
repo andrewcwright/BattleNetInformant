@@ -6,6 +6,7 @@ class CharactersController < ApplicationController
   def index
     @characters = Character.all
     @character = Character.new
+    @accordion = 1
   end
 
   def create

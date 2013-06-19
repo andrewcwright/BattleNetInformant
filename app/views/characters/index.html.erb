@@ -1,36 +1,48 @@
 <% if current_user %>
-  <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to "Log In", new_user_session_path %>
-<% end %>
-
-<%= form_for @character do |f| %>
-  <%= f.label :name, "Enter name here:"%>
-  <%= f.text_field :name %>
-  <%= f.label :realm, "Enter realm here:"%>
-  <%= f.text_field :realm %>
-  <%= f.submit "Submit" %>
-<% end %>
-
-<% if current_user %>
-  <% current_user.characters.each do |character| %>
-    <h2><%= character.name %></h2>
-    <p>Realm: <%= character.realm %></p>
-    <p>Battlegroup: <%= character.battlegroup %></p>
-    <p>Class: <%= character.character_class %></p>
-    <p>Race: <%= character.race %></p>
-    <p>Gender: <%= character.gender %></p>
-    <p>Level: <%= character.level %></p>
-    <p>Achievement Points: <%= character.achievementPoints %></p>
-    <p><%= character.powerType %>: <%= character.power %></p>
-    <p>Strength: <%= character.strength %></p>
-    <p>Agility: <%= character.agility %></p>
-    <p>Stamina: <%= character.stamina %></p>
-    <p>Intellect: <%= character.intellect %></p>
-    <p>Spirit: <%= character.spirit %></p>
-    <p>Mastery: <%= character.mastery %></p>
-    <p>PvP Resilience: <%= character.pvpResilience %></p>
-    <p>PvP Power Damage: <%= character.pvpPowerDamage %></p>
-    <p>PvP Power Healing: <%= character.pvpPowerHealing %></p>
+  <%= form_for @character do |f| %>
+    <%= f.label :name, "Enter name here:"%>
+    <%= f.text_field :name %>
+    <%= f.label :realm, "Enter realm here:"%>
+    <%= f.text_field :realm %>
+    <%= f.submit "Submit" %>
   <% end %>
+  
+  <div class="accordion" id="accordion2">
+    <% current_user.characters.each do |character| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=@accordion%>">
+            <p><%= character.name %> - <%= character.realm %></p>
+          </a>
+        </div>
+        <div id="collapse<%=@accordion%>" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <p>Battlegroup: <%= character.battlegroup %></p>
+            <p>Class: <%= character.character_class %></p>
+            <p>Race: <%= character.race %></p>
+            <p>Gender: <%= character.gender %></p>
+            <p>Level: <%= character.level %></p>
+            <p>Achievement Points: <%= character.achievementPoints %></p>
+            <p>Health: <%= character.health %></p>
+            <p><%= character.powerType %>: <%= character.power %></p>
+            <p>Strength: <%= character.strength %></p>
+            <p>Agility: <%= character.agility %></p>
+            <p>Stamina: <%= character.stamina %></p>
+            <p>Intellect: <%= character.intellect %></p>
+            <p>Spirit: <%= character.spirit %></p>
+            <p>Mastery: <%= character.mastery %></p>
+            <p>PvP Resilience: <%= character.pvpResilience %></p>
+            <p>PvP Power Damage: <%= character.pvpPowerDamage %></p>
+            <p>PvP Power Healing: <%= character.pvpPowerHealing %></p>
+          </div>
+        </div>
+      </div>
+      <% @accordion = @accordion + 1 %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="notSignedIn">
+    <h1>Welcome to Battle.Net Informant</h1>
+    <p>Please sign in to add your characters</p>
+  </div>
 <% end %>
