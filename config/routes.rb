@@ -3,6 +3,7 @@ BattleNetInformant::Application.routes.draw do
   devise_for :users
 
   resources :characters
+  match "/search" => "characters#search"
 
   root :to => "characters#index"
 

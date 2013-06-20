@@ -1,0 +1,33 @@
+<div class="span6"
+  <p><%= @character.name %> - <%= @character.realm %></p>
+  <p>Battlegroup: <%= @character.battlegroup %></p>
+  <p>Class: <%= @character.character_class %></p>
+  <p>Race: <%= @character.race %></p>
+  <p>Gender: <%= @character.gender %></p>
+  <p>Level: <%= @character.level %></p>
+  <p>Achievement Points: <%= @character.achievementPoints %></p>
+  <p>Health: <%= @character.health %></p>
+  <p><%= @character.powerType %>: <%= @character.power %></p>
+  <p>Mastery: <%= @character.mastery %></p>
+  <p>PvP Resilience: <%= @character.pvpResilience %></p>
+  <p>PvP Power Damage: <%= @character.pvpPowerDamage %></p>
+  <p>PvP Power Healing: <%= @character.pvpPowerHealing %></p>
+  <p>Strength: <%= @character.strength %></p>
+  <p>Agility: <%= @character.agility %></p>
+  <p>Stamina: <%= @character.stamina %></p>
+  <p>Intellect: <%= @character.intellect %></p>
+  <p>Spirit: <%= @character.spirit %></p>
+</div>
+
+<div class="span5">
+  <p>Enter the player you would like to compare</p>
+
+  <%= form_tag(:controller => "characters", :action => "search") do %>
+    <%= label_tag(:name, "Name: ") %>
+    <%= text_field_tag(:name) %>
+    <%= label_tag(:realm, "Realm: ") %>
+    <%= text_field_tag(:realm) %>
+    <%= hidden_field_tag(:cid, "#{@character.id}") %>
+    <%= submit_tag("Submit") %>
+  <% end %>
+</div>

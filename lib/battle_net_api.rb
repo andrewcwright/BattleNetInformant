@@ -6,7 +6,22 @@ module BattleNetAPI
     format_character
     add_base_stats
     add_pvp_stats
-    @character
+    @char
+  end
+
+  def self.versus(player1, player2)
+    versus = {}
+    versus['higherHealthPlayer'] = player1.health > player2['health'] ? player1.name : player2['name']
+    versus['higherDamagePlayer'] = player1.pvpPowerDamage > player2['pvpPowerDamage'] ? player1.name : player2['name']
+    versus['higherHealingPlayer'] = player1.pvpPowerHealing > player2['pvpPowerHealing'] ? player1.name : player2['name']
+    count = 0
+    versus.each do |higherPlayer|
+      if higherPlayer == player1.name
+        count = count + 1
+      end
+    end
+    versus['verdict'] = count > 1 ? "Fight" : "Run"
+    versus
   end
 
   def self.get_character
@@ -37,10 +52,10 @@ module BattleNetAPI
       11 => "Draenei", 22 => "Worgen", 24 => "Neutral Pandaren",
       25 => "Alliance Pandaren", 26 => "Horde Pandaren"
     }
-    @character = get_character
-    @character['character_class'] = classes[@character['character_class']-1]
-    @character['race'] = races[@character['race']]
-    @character['gender'] = @character['gender'] == 0 ? "Male" : "Female"
+    @char = get_character
+    @char['character_class'] = classes[@char['character_class']-1]
+    @char['race'] = races[@char['race']]
+    @char['gender'] = @char['gender'] == 0 ? "Male" : "Female"
   end
 
   def self.get_stats
@@ -55,23 +70,23 @@ module BattleNetAPI
   end
 
   def self.add_base_stats
-    @character['health'] = @stats['health']
+    @char['health'] = @stats['health']
     power_type = @stats['powerType']
     power_type = power_type.to_s.capitalize
-    @character['powerType'] = power_type
-    @character['power'] = @stats['power']
-    @character['strength'] = @stats['str']
-    @character['agility'] = @stats['agi']
-    @character['stamina'] = @stats['sta']
-    @character['intellect'] = @stats['int']
-    @character['spirit'] = @stats['spr']
-    @character['mastery'] = @stats['mastery']
+    @char['powerType'] = power_type
+    @char['power'] = @stats['power']
+    @char['strength'] = @stats['str']
+    @char['agility'] = @stats['agi']
+    @char['stamina'] = @stats['sta']
+    @char['intellect'] = @stats['int']
+    @char['spirit'] = @stats['spr']
+    @char['mastery'] = @stats['mastery']
   end
 
   def self.add_pvp_stats
-    @character['pvpResilience'] = @stats['pvpResilience']
-    @character['pvpPower'] = @stats['pvpPower']
-    @character['pvpPowerDamage'] = @stats['pvpPowerDamage']
-    @character['pvpPowerHealing'] = @stats['pvpPowerHealing']
+    @char['pvpResilience'] = @stats['pvpResilience']
+    @char['pvpPower'] = @stats['pvpPower']
+    @char['pvpPowerDamage'] = @stats['pvpPowerDamage']
+    @char['pvpPowerHealing'] = @stats['pvpPowerHealing']
   end
 end

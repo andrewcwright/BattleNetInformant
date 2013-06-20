@@ -12,28 +12,34 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=@accordion%>">
-            <p><%= character.name %> - <%= character.realm %></p>
+            <%= character.name %> - <%= character.realm %> - <%= character.battlegroup %>
           </a>
         </div>
         <div id="collapse<%=@accordion%>" class="accordion-body collapse">
           <div class="accordion-inner">
-            <p>Battlegroup: <%= character.battlegroup %></p>
-            <p>Class: <%= character.character_class %></p>
-            <p>Race: <%= character.race %></p>
-            <p>Gender: <%= character.gender %></p>
-            <p>Level: <%= character.level %></p>
-            <p>Achievement Points: <%= character.achievementPoints %></p>
-            <p>Health: <%= character.health %></p>
-            <p><%= character.powerType %>: <%= character.power %></p>
-            <p>Strength: <%= character.strength %></p>
-            <p>Agility: <%= character.agility %></p>
-            <p>Stamina: <%= character.stamina %></p>
-            <p>Intellect: <%= character.intellect %></p>
-            <p>Spirit: <%= character.spirit %></p>
-            <p>Mastery: <%= character.mastery %></p>
-            <p>PvP Resilience: <%= character.pvpResilience %></p>
-            <p>PvP Power Damage: <%= character.pvpPowerDamage %></p>
-            <p>PvP Power Healing: <%= character.pvpPowerHealing %></p>
+            <div class="span4">
+              <p class="accordionLinks"><%= link_to "Versus", character_url(character) %> / <%= link_to "Delete", character_url(character), :method => :delete %></p>
+              <p>Class: <%= character.character_class %></p>
+              <p>Race: <%= character.race %></p>
+              <p>Gender: <%= character.gender %></p>
+              <p>Level: <%= character.level %></p>
+              <p>Achievement Points: <%= character.achievementPoints %></p>
+            </div>
+            <div class="span4">
+              <p>Health: <%= character.health %></p>
+              <p><%= character.powerType %>: <%= character.power %></p>
+              <p>Mastery: <%= character.mastery %></p>
+              <p>PvP Resilience: <%= character.pvpResilience %></p>
+              <p>PvP Power Damage: <%= character.pvpPowerDamage %></p>
+              <p>PvP Power Healing: <%= character.pvpPowerHealing %></p>
+            </div>
+            <div class="span3">
+              <p>Strength: <%= character.strength %></p>
+              <p>Agility: <%= character.agility %></p>
+              <p>Stamina: <%= character.stamina %></p>
+              <p>Intellect: <%= character.intellect %></p>
+              <p>Spirit: <%= character.spirit %></p>
+            </div>
           </div>
         </div>
       </div>
