@@ -6,6 +6,7 @@ class CharactersController < ApplicationController
   def index
     @characters = Character.all
     @character = Character.new
+    @progression = Progression.new
     @accordion = 1
   end
 
@@ -42,6 +43,13 @@ class CharactersController < ApplicationController
     @player1 = Character.find( params[:cid] )
     @player2 = BattleNetAPI.make_character( params[:name], params[:realm] )
     @versus = BattleNetAPI.versus( @player1, @player2 )
+  end
+
+  def progression
+    @character = Character.find( params[:id] )
+    @progressions = Progression.all
+    @progression = Progression.new
+    @accordion = 1
   end
 
 end

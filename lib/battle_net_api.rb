@@ -9,6 +9,19 @@ module BattleNetAPI
     @char
   end
 
+  def self.make_progression(name, realm, raid)
+    @name = name
+    @realm = realm
+    @progression = raid
+    format_progression
+    @progression_data = {}
+    @progression_data['name'] = raid
+    @progression_data['lfrBossesKilled'] = num_kills('lfr')
+    @progression_data['normalBossesKilled'] = num_kills('normal')
+    @progression_data['heroicBossesKilled'] = num_kills('heroic')
+    @progression_data
+  end
+
   def self.versus(player1, player2)
     versus = {}
     versus['higherHealthPlayer'] = player1.health > player2['health'] ? player1.name : player2['name']
@@ -58,6 +71,28 @@ module BattleNetAPI
     @char['gender'] = @char['gender'] == 0 ? "Male" : "Female"
   end
 
+  def self.get_progression
+    url = "http://us.battle.net/api/wow/character/#{@realm}/#{@name}?fields=progression"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new("/api/wow/character/#{@realm}/#{@name}?fields=progression")
+    response = http.request(request)
+    json_character = response.body
+    parsed_character = JSON.parse(json_character)
+  end
+
+  def self.format_progression
+    progression_data = get_progression['progression']['raids']
+    this_progression = {}
+    progression_entries = progression_data.length
+    progression_entries.times do |index|
+      if progression_data[index]['name'] == @progression
+        this_progression = progression_data[index]
+      end
+    end
+    @raid = this_progression
+  end
+
   def self.get_stats
     url = "http://us.battle.net/api/wow/character/#{@realm}/#{@name}?fields=stats"
     uri = URI.parse(url)
@@ -88,5 +123,19 @@ module BattleNetAPI
     @char['pvpPower'] = @stats['pvpPower']
     @char['pvpPowerDamage'] = @stats['pvpPowerDamage']
     @char['pvpPowerHealing'] = @stats['pvpPowerHealing']
+  end
+
+  def self.num_kills game_mode
+    difficulty = 'lfrKills' if game_mode == 'lfr'
+    difficulty = 'normalKills' if game_mode == 'normal'
+    difficulty = 'heroicKills' if game_mode == 'heroic'
+    raid_bosses = @raid['bosses'].length
+    num_kills = 0
+    raid_bosses.times do |index|
+      if !@raid['bosses'][index][difficulty].nil? and @raid['bosses'][index][difficulty] > 0
+        num_kills += 1
+      end
+    end
+    num_kills
   end
 end

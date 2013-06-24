@@ -2,8 +2,11 @@ BattleNetInformant::Application.routes.draw do
 
   devise_for :users
 
-  resources :characters
+  resources :characters do
+    resources :progressions
+  end
   match "/search" => "characters#search"
+  match "/progression/:id" => "characters#progression", :as => :progression
 
   root :to => "characters#index"
 

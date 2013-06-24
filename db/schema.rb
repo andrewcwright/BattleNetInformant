@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611191823) do
+ActiveRecord::Schema.define(:version => 20130621165710) do
 
   create_table "characters", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(:version => 20130611191823) do
     t.decimal  "pvpPowerHealing",   :precision => 4, :scale => 2
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
+  end
+
+  create_table "progressions", :force => true do |t|
+    t.integer  "character_id"
+    t.string   "name"
+    t.integer  "lfrBossesKilled"
+    t.integer  "normalBossesKilled"
+    t.integer  "heroicBossesKilled"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "users", :force => true do |t|

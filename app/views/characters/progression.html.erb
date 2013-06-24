@@ -1,0 +1,35 @@
+<div class="span6">
+  <h3><%= @character.name %> - <%= @character.realm %> - <%= @character.battlegroup %></h3>
+</div>
+
+<div class="span5">
+  <%= form_for [@character, @progression] do |f| %>
+    <%= f.label :name, "Enter raid here:"%>
+    <%= f.text_field :name %>
+    <%= hidden_field_tag(:cname, "#{@character.name}") %>
+    <%= hidden_field_tag(:realm, "#{@character.realm}") %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
+
+<div class="span11">
+  <div class="accordion" id="accordion2">
+    <% @character.progressions.each do |progression| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=@accordion%>">
+            <%= progression.name %>
+          </a>
+        </div>
+        <div id="collapse<%=@accordion%>" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <p>LFR Kills: <%= progression.lfrBossesKilled %></p>
+            <p>Normal Kills: <%= progression.normalBossesKilled %></p>
+            <p>Heroic Kills: <%= progression.heroicBossesKilled %></p>
+          </div>
+        </div>
+      </div>
+      <% @accordion = @accordion + 1 %>
+    <% end %>
+  </div>
+</div>

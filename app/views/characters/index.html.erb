@@ -18,7 +18,7 @@
         <div id="collapse<%=@accordion%>" class="accordion-body collapse">
           <div class="accordion-inner">
             <div class="span4">
-              <p class="accordionLinks"><%= link_to "Versus", character_url(character) %> / <%= link_to "Delete", character_url(character), :method => :delete %></p>
+              <p class="accordionLinks"><%= link_to "Versus", character_url(character) %> / <%= link_to "Progression", progression_url(character) %> / <%= link_to "Delete", character_url(character), :method => :delete %></p>
               <p>Class: <%= character.character_class %></p>
               <p>Race: <%= character.race %></p>
               <p>Gender: <%= character.gender %></p>
