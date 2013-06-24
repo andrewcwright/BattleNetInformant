@@ -6,7 +6,7 @@ Feature: Users can view base stats of a character
   Scenario: Happy Path
     Given the user "acw462@gmail.com" with password "password"
     When I go to the homepage
-    And I click "Log In"
+    And I click "Login"
     And I fill in "acw462@gmail.com" for "Email"
     And I fill in "password" for "Password"
     And I press "Sign in"
