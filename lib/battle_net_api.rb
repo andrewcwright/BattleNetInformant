@@ -138,4 +138,21 @@ module BattleNetAPI
     end
     num_kills
   end
+
+  def self.new_kills(old_prog, new_prog)
+    new_kills = {}
+    if new_prog['lfrBossesKilled'] > old_prog.lfrBossesKilled
+      dif = new_prog['lfrBossesKilled'] - old_prog.lfrBossesKilled
+      new_kills['lfr'] = "Your have killed #{dif} new bosses in LFR difficulty"
+    end
+    if new_prog['normalBossesKilled'] > old_prog.normalBossesKilled
+      dif = new_prog['normalBossesKilled'] - old_prog.normalBossesKilled
+      new_kills['normal'] = "Your have killed #{dif} new bosses in normal difficulty"
+    end
+    if new_prog['heroicBossesKilled'] > old_prog.heroicBossesKilled
+      dif = new_prog['heroicBossesKilled'] - old_prog.heroicBossesKilled
+      new_kills['heroic'] = "Your have killed #{dif} new bosses in heroic difficulty"
+    end
+    new_kills
+  end
 end

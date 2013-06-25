@@ -23,6 +23,7 @@
         </div>
         <div id="collapse<%=@accordion%>" class="accordion-body collapse">
           <div class="accordion-inner">
+            <%= link_to "Update", edit_character_progression_url(progression), :class => "button" %>
             <p>LFR Kills: <%= progression.lfrBossesKilled %></p>
             <p>Normal Kills: <%= progression.normalBossesKilled %></p>
             <p>Heroic Kills: <%= progression.heroicBossesKilled %></p>
