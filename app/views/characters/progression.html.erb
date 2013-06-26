@@ -1,14 +1,14 @@
 <div class="span6">
-  <h3><%= @character.name %> - <%= @character.realm %> - <%= @character.battlegroup %></h3>
+  <h3 class="progBanner"><%= @character.name %> - <%= @character.realm %> - <%= @character.battlegroup %></h3>
 </div>
 
-<div class="span5">
+<div class="span5 progForm">
   <%= form_for [@character, @progression] do |f| %>
     <%= f.label :name, "Enter raid here:"%>
     <%= f.text_field :name %>
     <%= hidden_field_tag(:cname, "#{@character.name}") %>
     <%= hidden_field_tag(:realm, "#{@character.realm}") %>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", :class => "progSubmit" %>
   <% end %>
 </div>
 

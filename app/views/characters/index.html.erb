@@ -1,12 +1,13 @@
 <% if current_user %>
-  <%= form_for @character do |f| %>
-    <%= f.label :name, "Enter name here:"%>
-    <%= f.text_field :name %>
-    <%= f.label :realm, "Enter realm here:"%>
-    <%= f.text_field :realm %>
-    <%= f.submit "Submit" %>
-  <% end %>
-  
+    <h1 class="charBanner">Enter your characters to get started!</h1>
+    <%= form_for @character do |f| %>
+      <%= f.label :name, "Enter name here:"%>
+      <%= f.text_field :name %>
+      <%= f.label :realm, "Enter realm here:"%>
+      <%= f.text_field :realm %>
+      <%= f.submit "Submit", :class => "charSubmit" %>
+    <% end %>
+
   <div class="accordion" id="accordion2">
     <% current_user.characters.each do |character| %>
       <div class="accordion-group">
@@ -17,7 +18,14 @@
         </div>
         <div id="collapse<%=@accordion%>" class="accordion-body collapse">
           <div class="accordion-inner">
-            <div class="span4">
+            <div class="span4 leftThird">
+              <p>Health: <%= character.health %></p>
+              <p><%= character.powerType %>: <%= character.power %></p>
+              <p>PvP Resilience: <%= character.pvpResilience %></p>
+              <p>PvP Power Damage: <%= character.pvpPowerDamage %></p>
+              <p>PvP Power Healing: <%= character.pvpPowerHealing %></p>
+            </div>
+            <div class="span3">
               <p class="accordionLinks"><%= link_to "Versus", character_url(character) %> / <%= link_to "Progression", progression_url(character) %> / <%= link_to "Delete", character_url(character), :method => :delete %></p>
               <p>Class: <%= character.character_class %></p>
               <p>Race: <%= character.race %></p>
@@ -25,15 +33,7 @@
               <p>Level: <%= character.level %></p>
               <p>Achievement Points: <%= character.achievementPoints %></p>
             </div>
-            <div class="span4">
-              <p>Health: <%= character.health %></p>
-              <p><%= character.powerType %>: <%= character.power %></p>
-              <p>Mastery: <%= character.mastery %></p>
-              <p>PvP Resilience: <%= character.pvpResilience %></p>
-              <p>PvP Power Damage: <%= character.pvpPowerDamage %></p>
-              <p>PvP Power Healing: <%= character.pvpPowerHealing %></p>
-            </div>
-            <div class="span3">
+            <div class="span4 rightThird">
               <p>Strength: <%= character.strength %></p>
               <p>Agility: <%= character.agility %></p>
               <p>Stamina: <%= character.stamina %></p>
@@ -49,6 +49,6 @@
 <% else %>
   <div class="notSignedIn">
     <h1>Welcome to Battle.Net Informant</h1>
-    <p>Please sign in to add your characters</p>
+    <h2>Please sign in to add your characters</h2>
   </div>
 <% end %>
