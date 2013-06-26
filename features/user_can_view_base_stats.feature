@@ -19,4 +19,3 @@ Feature: Users can view base stats of a character
     And I should see "Stamina"
     And I should see "Intellect"
     And I should see "Spirit"
-    And I should see "Mastery"
