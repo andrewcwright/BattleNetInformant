@@ -27,14 +27,9 @@ module BattleNetAPI
     versus['higherHealthPlayer'] = player1.health > player2['health'] ? player1.name : player2['name']
     versus['higherDamagePlayer'] = player1.pvpPowerDamage > player2['pvpPowerDamage'] ? player1.name : player2['name']
     versus['higherHealingPlayer'] = player1.pvpPowerHealing > player2['pvpPowerHealing'] ? player1.name : player2['name']
-    count = 0
-    versus.each do |higherPlayer|
-      if higherPlayer == player1.name
-        count = count + 1
-      end
-    end
-    versus['verdict'] = count > 1 ? "Fight" : "Run"
-    versus
+    versus['verdict'] = player1.pvpPowerDamage > player2['pvpPowerDamage'] ? "Fight" : "Run"
+    versus['type'] = player2['pvpPowerHealing'] > player2['pvpPowerDamage'] ? "Healer" : "DPS"
+    versus 
   end
 
   def self.get_character

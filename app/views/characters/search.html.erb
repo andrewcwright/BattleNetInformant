@@ -19,11 +19,17 @@
   <p>Spirit: <%= @player1.spirit %></p>
 </div>
 
-<div class="span5">
-  <h3><%= @versus['higherHealthPlayer'] %> has higher health</h3>
-  <h3><%= @versus['higherDamagePlayer'] %> has higher damage</h3>
-  <h3><%= @versus['higherHealingPlayer'] %> has higher healing</h3>
-  <h1><%= @versus['verdict'] %>!!!</h1>
+<div class="span5 versusMid">
+  <% if @player2['pvpPowerDamage'] == 0 %>
+    <h3>Player 2 is not wearing PvP gear</h3>
+    <h3>Fight!!!</h3>
+  <% else %>
+    <h3><%= @versus['higherHealthPlayer'] %> has higher health</h3>
+    <h3><%= @versus['higherDamagePlayer'] %> has higher damage</h3>
+    <h3><%= @versus['higherHealingPlayer'] %> has higher healing</h3>
+    <h3><%= @player2['name']%> is a <%= @versus['type'] %></h3>
+    <h1><%= @versus['verdict'] %>!!!</h1>
+  <% end %>
 </div>
 
 <div class="span3">
