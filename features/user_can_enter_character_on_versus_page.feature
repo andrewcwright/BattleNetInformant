@@ -20,6 +20,4 @@ Feature: Users can go to the versus page and enter a second character
     And I click "Submit"
     Then I should see "Andose"
     And I should see "Infernae"
-    And I should see "has higher health"
-    And I should see "has higher damage"
-    And I should see "has higher healing"
+    And I should see "Fight!!!"

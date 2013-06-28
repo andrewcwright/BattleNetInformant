@@ -20,7 +20,7 @@
 </div>
 
 <div class="span5 versusMid">
-  <% if @player2['pvpPowerDamage'] == 0 %>
+  <% if @player2['pvpPowerDamage'] == 0 and @player2['pvpPowerHealing'] == 0%>
     <h3>Player 2 is not wearing PvP gear</h3>
     <h3>Fight!!!</h3>
   <% else %>
