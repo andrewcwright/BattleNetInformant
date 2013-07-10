@@ -34,6 +34,7 @@ Implemented all of the initial functionality.
 
 <a name="Features"></a>
 ## 4. Features
+
 * Lookup a character on any server and print some information to the screen
 * Check progress on any raid for that character
 * Store that information in a database
@@ -42,7 +43,7 @@ Implemented all of the initial functionality.
 <a name="Usage"></a>
 ## 5. Usage
 
-* Create and account
+* Go to <http://battlenetinformant.herokuapp.com/>, and create an account
 * Login using your email and password
 * Enter your characters
 
